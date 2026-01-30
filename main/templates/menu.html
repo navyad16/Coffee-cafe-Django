@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Our Menu ☕</h1>
+
+<!-- ================= HOT COFFEE ================= -->
+<h2>Hot Coffee</h2>
+<div class="menu-container">
+{% for item in hot %}
+    <div class="menu-card">
+        <img src="{{ item.image.url }}" class="menu-img" alt="{{ item.name }}">
+
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+
+        <form method="post" action="{% url 'add_to_cart' item.id %}">
+            {% csrf_token %}
+            <button class="btn">Add to Cart</button>
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+<!-- ================= COLD COFFEE ================= -->
+<h2>Cold Coffee</h2>
+<div class="menu-container">
+{% for item in cold %}
+    <div class="menu-card">
+        <img src="{{ item.image.url }}" class="menu-img" alt="{{ item.name }}">
+
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+
+        <form method="post" action="{% url 'add_to_cart' item.id %}">
+            {% csrf_token %}
+            <button class="btn">Add to Cart</button>
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+<!-- ================= SNACKS ================= -->
+<h2>Snacks</h2>
+<div class="menu-container">
+{% for item in snacks %}
+    <div class="menu-card">
+        <img src="{{ item.image.url }}" class="menu-img" alt="{{ item.name }}">
+
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+
+        <form method="post" action="{% url 'add_to_cart' item.id %}">
+            {% csrf_token %}
+            <button class="btn">Add to Cart</button>
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+<!-- ================= DESSERTS ================= -->
+<h2>Desserts</h2>
+<div class="menu-container">
+{% for item in dessert %}
+    <div class="menu-card">
+        <img src="{{ item.image.url }}" class="menu-img" alt="{{ item.name }}">
+
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+        <span>₹{{ item.price }}</span>
+
+        <form method="post" action="{% url 'add_to_cart' item.id %}">
+            {% csrf_token %}
+            <button class="btn">Add to Cart</button>
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

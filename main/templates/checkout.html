@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Checkout ☕</h1>
+
+<h3>Your Order</h3>
+<ul>
+{% for item in items %}
+    <li>{{ item.item.name }} - ₹{{ item.item.price }}</li>
+{% endfor %}
+</ul>
+
+<form method="POST">
+{% csrf_token %}
+<input name="name" placeholder="Your Name" required><br>
+<input name="phone" placeholder="Phone Number" required><br>
+<textarea name="address" placeholder="Address (optional)"></textarea><br><br>
+<button class="btn">Confirm Order</button>
+</form>
+
+<p><b>Payment:</b> Pay at counter</p>
+
+{% endblock %}

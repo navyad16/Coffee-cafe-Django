@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Your Cart 🛒</h2>
+
+{% if items %}
+
+<table width="100%" cellpadding="12" cellspacing="0" style="border-collapse: collapse;">
+    <tr style="background:#f5efe6;">
+        <th align="left">Item</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr>
+
+    {% for i in items %}
+    <tr style="border-bottom:1px solid #ddd;">
+        <td>{{ i.item.name }}</td>
+
+        <td align="center">₹{{ i.item.price }}</td>
+
+        <td align="center">
+            <a href="{% url 'decrease_qty' i.id %}" style="text-decoration:none;">➖</a>
+            <strong>{{ i.quantity }}</strong>
+            <a href="{% url 'increase_qty' i.id %}" style="text-decoration:none;">➕</a>
+        </td>
+
+        <td align="center">₹{{ i.total_price }}</td>
+
+        <td align="center">
+            <a href="{% url 'remove_item' i.id %}" style="color:red; text-decoration:none;">
+                ❌ Remove
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+
+<h3>Total Amount: ₹{{ total }}</h3>
+
+<a href="/checkout/" class="btn">Proceed to Checkout</a>
+
+{% else %}
+<p>Your cart is empty 😔</p>
+<a href="/menu/" class="btn">Go to Menu</a>
+{% endif %}
+
+{% endblock %}

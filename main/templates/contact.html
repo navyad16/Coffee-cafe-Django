@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Contact Us</h1>
+
+{% if success %}
+    <p style="color: green; font-weight: bold;">
+        ✔ Message sent successfully!
+    </p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <label>Your Name</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Email</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Message</label><br>
+    <textarea name="message" required></textarea><br><br>
+
+    <button type="submit" class="btn">Send Message</button>
+</form>
+{% endblock %}
